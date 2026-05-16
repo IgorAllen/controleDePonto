@@ -71,7 +71,7 @@ const EmployeeTable = ({
 
             return (
               <tr key={emp.id}>
-                <td>
+                <td data-label="Funcionário">
                   <input
                     type="text"
                     className="edit-input"
@@ -80,7 +80,7 @@ const EmployeeTable = ({
                     placeholder="Nome do Funcionário"
                   />
                 </td>
-                <td>
+                <td data-label="Diária (R$)">
                   <input
                     type="number"
                     className="edit-input money-input"
@@ -91,7 +91,7 @@ const EmployeeTable = ({
                 {DAYS_OF_WEEK.map(day => {
                   const status = empData[day.id];
                   return (
-                    <td key={day.id} style={{ textAlign: 'center' }}>
+                    <td key={day.id} data-label={day.name} style={{ textAlign: 'center' }}>
                       <button
                         className={`status-btn ${getStatusClass(status)}`}
                         onClick={() => handleStatusClick(emp.id, day.id)}
@@ -101,10 +101,10 @@ const EmployeeTable = ({
                     </td>
                   );
                 })}
-                <td className="total-cell">
+                <td data-label="Total Pago" className="total-cell">
                   {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}
                 </td>
-                <td style={{ textAlign: 'center' }}>
+                <td data-label="Ações" style={{ textAlign: 'center' }}>
                   <button
                     className="icon-btn delete"
                     onClick={() => onRemoveEmployee(emp.id)}

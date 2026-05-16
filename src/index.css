@@ -391,3 +391,95 @@ tbody tr:last-child td {
   gap: 1rem;
   margin-top: 1rem;
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .week-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* Transform Table into Cards */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  .table-container {
+    background: transparent;
+    border: none;
+    overflow-x: visible;
+  }
+
+  tbody tr {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+
+  tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  tbody tr:hover {
+    background: var(--bg-card); /* Remove hover effect from desktop */
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: right !important; /* Override inline styles */
+  }
+
+  td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-right: 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  /* Specific overrides for inputs in cards */
+  .edit-input {
+    width: auto;
+    flex-grow: 1;
+    max-width: 60%;
+    text-align: right;
+  }
+
+  .status-btn {
+    width: 120px;
+    padding: 0.5rem;
+  }
+}
+
