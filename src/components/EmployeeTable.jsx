@@ -26,7 +26,8 @@ const EmployeeTable = ({
     
     let newStatus = null;
     if (currentStatus === null || currentStatus === undefined) newStatus = 'present';
-    else if (currentStatus === 'present') newStatus = 'absent';
+    else if (currentStatus === 'present') newStatus = 'half';
+    else if (currentStatus === 'half') newStatus = 'absent';
     else if (currentStatus === 'absent') newStatus = null;
 
     onToggleAttendance(empId, dayId, newStatus);
@@ -34,12 +35,14 @@ const EmployeeTable = ({
 
   const getStatusClass = (status) => {
     if (status === 'present') return 'status-present';
+    if (status === 'half') return 'status-half';
     if (status === 'absent') return 'status-absent';
     return 'status-null';
   };
 
   const getStatusText = (status) => {
     if (status === 'present') return 'P';
+    if (status === 'half') return 'M';
     if (status === 'absent') return 'F';
     return '-';
   };
@@ -64,7 +67,8 @@ const EmployeeTable = ({
             let presentDays = 0;
             
             DAYS_OF_WEEK.forEach(day => {
-              if (empData[day.id] === 'present') presentDays++;
+              if (empData[day.id] === 'present') presentDays += 1;
+              else if (empData[day.id] === 'half') presentDays += 0.5;
             });
 
             const total = presentDays * emp.dailyRate;
